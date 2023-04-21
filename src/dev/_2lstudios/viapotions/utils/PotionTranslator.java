@@ -2,6 +2,7 @@ package dev._2lstudios.viapotions.utils;
 
 import org.bukkit.potion.PotionEffectType;
 
+
 public enum PotionTranslator {
 	NIGHT_VISION(PotionEffectType.NIGHT_VISION, new TranslationData(16422, 0, 106)),
 	INVISIBILITY(PotionEffectType.INVISIBILITY, new TranslationData(16430, 0, 106)),
