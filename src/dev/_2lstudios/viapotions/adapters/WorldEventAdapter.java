@@ -2,23 +2,23 @@ package dev._2lstudios.viapotions.adapters;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.reflect.StructureModifier;
-
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-
 import dev._2lstudios.viapotions.utils.SplashTranslator;
 import dev._2lstudios.viapotions.utils.TranslationData;
 import dev._2lstudios.viapotions.utils.VersionUtil;
 
 public class WorldEventAdapter extends PacketAdapter {
+
 	private final VersionUtil versionUtil;
 
 	public WorldEventAdapter(final Plugin plugin, final VersionUtil versionUtil) {
-		super(plugin, PacketType.Play.Server.WORLD_EVENT);
+		super(plugin, ListenerPriority.NORMAL, PacketType.Play.Server.WORLD_EVENT);
 
 		this.versionUtil = versionUtil;
 	}
