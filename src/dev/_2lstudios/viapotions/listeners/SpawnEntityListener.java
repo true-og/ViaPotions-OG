@@ -17,44 +17,44 @@ import dev._2lstudios.viapotions.utils.TranslationData;
 import dev._2lstudios.viapotions.utils.VersionUtil;
 
 public class SpawnEntityListener extends PacketAdapter {
-	private final VersionUtil versionUtil;
+    private final VersionUtil versionUtil;
 
-	public SpawnEntityListener(final Plugin plugin, final VersionUtil versionUtil) {
-		super(plugin, PacketType.Play.Server.SPAWN_ENTITY);
+    public SpawnEntityListener(final Plugin plugin, final VersionUtil versionUtil) {
+        super(PacketAdapter.params(plugin, PacketType.Play.Server.SPAWN_ENTITY));
 
-		this.versionUtil = versionUtil;
-	}
+        this.versionUtil = versionUtil;
+    }
 
-	@Override
-	public void onPacketSending(final PacketEvent event) {
-		final PacketContainer packet = event.getPacket();
-		final Entity entity = packet.getEntityModifier(event).read(0);
+    @Override
+    public void onPacketSending(final PacketEvent event) {
+        final PacketContainer packet = event.getPacket();
+        final Entity entity = packet.getEntityModifier(event).read(0);
 
-		if (packet.getIntegers().read(6) == 73 && entity instanceof ThrownPotion) {
-			final Player player = event.getPlayer();
-			final int version = versionUtil.getVersion(player);
-			final PacketContainer edited = packet.deepClone();
-			final ThrownPotion potion = (ThrownPotion) entity;
+        if (packet.getIntegers().read(6) == 73 && entity instanceof ThrownPotion) {
+            final Player player = event.getPlayer();
+            final int version = versionUtil.getVersion(player);
+            final PacketContainer edited = packet.deepClone();
+            final ThrownPotion potion = (ThrownPotion) entity;
 
-			for (final PotionEffect effect : potion.getEffects()) {
-				for (final PotionTranslator translator : PotionTranslator.values()) {
-					if (effect.getType().equals(translator.getPotionEffectType())) {
-						for (TranslationData data : translator.getDatas()) {
-							if (data.getLowestVersion() <= version && data.getHighestVersion() >= version) {
-								edited.getIntegers().write(7, data.getRemap());
-							}
-						}
-					}
-				}
-			}
+            for (final PotionEffect effect : potion.getEffects()) {
+                for (final PotionTranslator translator : PotionTranslator.values()) {
+                    if (effect.getType().equals(translator.getPotionEffectType())) {
+                        for (TranslationData data : translator.getDatas()) {
+                            if (data.getLowestVersion() <= version && data.getHighestVersion() >= version) {
+                                edited.getIntegers().write(7, data.getRemap());
+                            }
+                        }
+                    }
+                }
+            }
 
-			try {
-				ProtocolLibrary.getProtocolManager().sendServerPacket(player, edited, false);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+            try {
+                ProtocolLibrary.getProtocolManager().sendServerPacket(player, edited, false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-			event.setCancelled(true);
-		}
-	}
+            event.setCancelled(true);
+        }
+    }
 }
