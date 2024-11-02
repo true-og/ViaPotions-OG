@@ -1,0 +1,9 @@
+name: ViaPotions-OG
+version: '${version}'
+description: Translates thrown potions for ViaRewind.
+depend: [ProtocolLib]
+api-version: '${apiVersion}'
+softdepend:
+  - "ViaRewind"
+  - "ViaRewind-Legacy-Support"
+main: plugin.ViaPotionsOG.ViaPotionsOG

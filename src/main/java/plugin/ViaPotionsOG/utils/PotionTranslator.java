@@ -1,9 +1,9 @@
-package dev._2lstudios.viapotions.utils;
+package plugin.ViaPotionsOG.utils;
 
 import org.bukkit.potion.PotionEffectType;
 
-
 public enum PotionTranslator {
+
 	NIGHT_VISION(PotionEffectType.NIGHT_VISION, new TranslationData(16422, 0, 106)),
 	INVISIBILITY(PotionEffectType.INVISIBILITY, new TranslationData(16430, 0, 106)),
 	JUMP_BOOST(PotionEffectType.JUMP, new TranslationData(16388, 0, 46), new TranslationData(16388, 48, 106), new TranslationData(16395, 47, 47)),
@@ -25,15 +25,22 @@ public enum PotionTranslator {
 	private TranslationData[] datas;
 
 	PotionTranslator(PotionEffectType effect, TranslationData... datas) {
+
 		this.effect = effect;
 		this.datas = datas;
+
 	}
 
 	public PotionEffectType getPotionEffectType() {
+
 		return effect;
+
 	}
 
 	public TranslationData[] getDatas() {
+
 		return datas;
+
 	}
+
 }

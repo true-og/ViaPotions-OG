@@ -1,6 +1,7 @@
-package dev._2lstudios.viapotions.utils;
+package plugin.ViaPotionsOG.utils;
 
 public enum SplashTranslator {
+
 	NIGHT_VISION(2039713, new TranslationData(8356774, 0, 106), new TranslationData(5, 107, 210)),
 	INVISIBILITY(8356754, new TranslationData(8356778, 0, 106), new TranslationData(7, 107, 210)),
 	JUMP_BOOST(2293580, new TranslationData(8356772, 0, 46), new TranslationData(8356772, 48, 106), new TranslationData(8356779, 47, 47), new TranslationData(9, 107, 210)),
@@ -22,15 +23,22 @@ public enum SplashTranslator {
 	private TranslationData[] datas;
 
 	SplashTranslator(int rgb, TranslationData... datas) {
+
 		this.rgb = rgb;
 		this.datas = datas;
+
 	}
 
 	public int getRGB() {
+
 		return rgb;
+
 	}
 
 	public TranslationData[] getDatas() {
+
 		return datas;
+
 	}
+
 }
